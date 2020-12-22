@@ -1,0 +1,41 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+
+int main()
+{
+	double x;
+	int N;
+	cout << " Input x:";
+	cin >> x;
+
+	do {
+		cout << "n: ";
+		cin >> N;
+	} while (N < 1);
+
+	double S = 0, ak = x;
+	for (int k = 0; k <= N; ++k) {
+		S += ak;
+		ak *= (-1) * x * x / (2 * k + 2) / (2 * k + 3);
+	 }
+	cout << "S1 = " << S << endl;
+
+	double eps = 1e-6;
+	S = 0;
+	ak = x;
+	int k = 0;
+	double sign = 1;
+
+	while (ak > eps) {
+		S += sign*ak;
+		ak *= (-1) * x * x / (2 * k + 2) / (2 * k + 3);
+		sign *= -1;
+		++k;
+	}
+	cout << "S2 =" << S << endl;
+	cout << k << "steps" << endl;
+	cout << "sin(x) = " << sin(x) << endl;
+}
+ 
